@@ -1,0 +1,267 @@
+================================================================================
+  COMMANDES POUR EXÉCUTER TOUS LES LABS - OpenMP
+================================================================================
+
+Date: 3 novembre 2025
+Répertoire principal: /home/safsaf/openMP
+
+================================================================================
+  COMPILATION
+================================================================================
+
+# Lab 1 - Clauses OpenMP (private, firstprivate, lastprivate, shared)
+gcc -fopenmp -O2 /home/safsaf/openMP/Labs/lab1.c -o /home/safsaf/openMP/Labs/lab1
+
+# Lab 2 - Réduction vs Atomic vs Critical
+gcc -fopenmp -O2 /home/safsaf/openMP/Labs/lab2.c -o /home/safsaf/openMP/Labs/lab2
+
+# Lab 3 - Nombres Premiers (schedules static/dynamic)
+gcc -fopenmp -O2 /home/safsaf/openMP/Labs/lab3.c -o /home/safsaf/openMP/Labs/lab3 -lm
+
+# Matrix - Multiplication de matrices parallèle
+gcc -fopenmp -O2 /home/safsaf/openMP/Labs/matrix.c -o /home/safsaf/openMP/Labs/matrix -lm
+
+# Fichiers exemples
+gcc -fopenmp /home/safsaf/openMP/hello.c -o /home/safsaf/openMP/hello
+gcc -fopenmp /home/safsaf/openMP/iterative.c -o /home/safsaf/openMP/iterative
+gcc -fopenmp /home/safsaf/openMP/firstlast_clear.c -o /home/safsaf/openMP/firstlast_clear
+gcc -fopenmp /home/safsaf/openMP/master_example.c -o /home/safsaf/openMP/master_example
+gcc -fopenmp /home/safsaf/openMP/collapse_demo.c -o /home/safsaf/openMP/collapse_demo
+
+================================================================================
+  EXÉCUTION DES LABS
+================================================================================
+
+# LAB 1 - Démonstration des clauses OpenMP
+cd /home/safsaf/openMP/Labs
+./lab1
+
+# LAB 2 - Comparaison réduction/atomic/critical
+cd /home/safsaf/openMP/Labs
+./lab2
+
+# LAB 3 - Nombres premiers parallèles
+cd /home/safsaf/openMP/Labs
+./lab3
+
+# MATRIX - Mode rapide (seulement 128 et 256)
+cd /home/safsaf/openMP/Labs
+./matrix --quick
+
+# MATRIX - Mode complet (128, 256, 512, 1024)
+cd /home/safsaf/openMP/Labs
+./matrix
+
+# MATRIX - Génération CSV
+cd /home/safsaf/openMP/Labs
+./matrix --csv
+
+================================================================================
+  EXÉCUTION DES FICHIERS EXEMPLES
+================================================================================
+
+# Hello World OpenMP
+cd /home/safsaf/openMP
+./hello
+
+# Exemple itératif (comparaison séquentiel/parallèle)
+cd /home/safsaf/openMP
+./iterative
+
+# Exemple firstprivate/lastprivate
+cd /home/safsaf/openMP
+./firstlast_clear
+
+# Exemple master directive
+cd /home/safsaf/openMP
+./master_example
+
+# Démonstration collapse
+cd /home/safsaf/openMP
+./collapse_demo
+
+================================================================================
+  GÉNÉRATION DES GRAPHIQUES
+================================================================================
+
+# Graphiques pour Lab 2 (si matplotlib disponible)
+cd /home/safsaf/openMP/Labs
+python3 plot_lab2_results.py
+
+# Graphiques pour Matrix (analyses anciennes)
+cd /home/safsaf/openMP/Labs
+python3 plot_matrix_results.py
+
+# Graphiques pour Matrix (selon l'énoncé)
+cd /home/safsaf/openMP/Labs
+python3 generate_required_plots.py
+
+================================================================================
+  VISUALISATION DES GRAPHIQUES
+================================================================================
+
+# Voir tous les graphiques générés
+cd /home/safsaf/openMP/Labs
+eog *.png
+
+# Ou avec un autre viewer
+cd /home/safsaf/openMP/Labs
+xdg-open speedup_vs_threads_all_sizes.png
+
+# Lister tous les graphiques
+cd /home/safsaf/openMP/Labs
+ls -lh *.png
+
+================================================================================
+  GRAPHIQUES DISPONIBLES
+================================================================================
+
+Lab 2:
+  - lab2.png (si généré)
+
+Matrix (énoncé):
+  - speedup_vs_threads_all_sizes.png      ← PRINCIPAL
+  - speedup_comparison_all_sizes.png
+  - static_vs_dynamic_all_sizes.png
+  - chunk_size_comparison.png
+  - efficiency_all_sizes.png
+
+Matrix (analyses supplémentaires):
+  - speedup_vs_threads.png
+  - efficiency_vs_threads.png
+  - chunk_size_impact.png
+  - schedule_comparison.png
+  - combined_analysis.png
+
+================================================================================
+  COMPILATION + EXÉCUTION EN UNE COMMANDE
+================================================================================
+
+# Lab 1
+gcc -fopenmp -O2 /home/safsaf/openMP/Labs/lab1.c -o /home/safsaf/openMP/Labs/lab1 && /home/safsaf/openMP/Labs/lab1
+
+# Lab 2
+gcc -fopenmp -O2 /home/safsaf/openMP/Labs/lab2.c -o /home/safsaf/openMP/Labs/lab2 && /home/safsaf/openMP/Labs/lab2
+
+# Lab 3
+gcc -fopenmp -O2 /home/safsaf/openMP/Labs/lab3.c -o /home/safsaf/openMP/Labs/lab3 -lm && /home/safsaf/openMP/Labs/lab3
+
+# Matrix (mode rapide)
+gcc -fopenmp -O2 /home/safsaf/openMP/Labs/matrix.c -o /home/safsaf/openMP/Labs/matrix -lm && /home/safsaf/openMP/Labs/matrix --quick
+
+================================================================================
+  NETTOYAGE
+================================================================================
+
+# Supprimer tous les exécutables
+cd /home/safsaf/openMP/Labs
+rm -f lab1 lab2 lab3 matrix
+
+cd /home/safsaf/openMP
+rm -f hello iterative firstlast_clear master_example collapse_demo
+
+# Supprimer tous les graphiques
+cd /home/safsaf/openMP/Labs
+rm -f *.png
+
+# Supprimer les fichiers CSV
+cd /home/safsaf/openMP/Labs
+rm -f *.csv
+
+================================================================================
+  RECOMPILATION COMPLÈTE DE TOUT
+================================================================================
+
+cd /home/safsaf/openMP
+
+# Labs
+gcc -fopenmp -O2 Labs/lab1.c -o Labs/lab1
+gcc -fopenmp -O2 Labs/lab2.c -o Labs/lab2
+gcc -fopenmp -O2 Labs/lab3.c -o Labs/lab3 -lm
+gcc -fopenmp -O2 Labs/matrix.c -o Labs/matrix -lm
+
+# Exemples
+gcc -fopenmp hello.c -o hello
+gcc -fopenmp iterative.c -o iterative
+gcc -fopenmp firstlast_clear.c -o firstlast_clear
+gcc -fopenmp master_example.c -o master_example
+gcc -fopenmp collapse_demo.c -o collapse_demo
+
+echo "✓ Compilation complète terminée!"
+
+================================================================================
+  TEST RAPIDE DE TOUT
+================================================================================
+
+# Tester tous les labs rapidement
+cd /home/safsaf/openMP/Labs
+echo "=== LAB 1 ===" && ./lab1 | head -50
+echo "=== LAB 2 ===" && ./lab2 | head -50
+echo "=== LAB 3 ===" && ./lab3 | head -50
+echo "=== MATRIX ===" && ./matrix --quick | head -50
+
+================================================================================
+  VÉRIFIER LA CONFIGURATION OpenMP
+================================================================================
+
+# Vérifier le support OpenMP
+gcc -fopenmp --version
+
+# Vérifier le nombre de threads disponibles
+echo "Nombre de threads disponibles:"
+nproc
+
+# Tester avec un programme simple
+cd /home/safsaf/openMP
+./hello
+
+# Définir manuellement le nombre de threads
+export OMP_NUM_THREADS=4
+./hello
+
+================================================================================
+  NOTES IMPORTANTES
+================================================================================
+
+1. Tous les programmes nécessitent l'option -fopenmp pour la compilation
+
+2. Lab3 et Matrix nécessitent -lm (bibliothèque mathématique) à la FIN
+
+3. Pour les graphiques, assurez-vous que matplotlib est installé:
+   pip3 install matplotlib
+
+4. Les temps d'exécution varient selon votre machine
+
+5. Le nombre de threads optimal dépend de votre CPU:
+   - Utilisez 'nproc' pour voir le nombre de cœurs
+   - Généralement: 4-8 threads est optimal
+
+6. Mode rapide de matrix (--quick) teste seulement 128 et 256
+   Mode complet peut prendre plusieurs minutes pour 1024+
+
+================================================================================
+  STRUCTURE DES FICHIERS
+================================================================================
+
+/home/safsaf/openMP/
+│
+├── hello.c                  # Premier programme OpenMP
+├── iterative.c              # Comparaison séquentiel/parallèle
+├── firstlast_clear.c        # Exemples firstprivate/lastprivate
+├── master_example.c         # Directive master
+├── collapse_demo.c          # Optimisation collapse
+│
+└── Labs/
+    ├── lab1.c               # Clauses OpenMP
+    ├── lab2.c               # Reduction/Atomic/Critical
+    ├── lab3.c               # Nombres premiers
+    ├── matrix.c             # Multiplication matrices
+    │
+    ├── plot_matrix_results.py
+    ├── generate_required_plots.py
+    │
+    └── *.png                # Graphiques générés
+
+================================================================================
+  FIN DU FICHIER DE COMMANDES
+================================================================================
